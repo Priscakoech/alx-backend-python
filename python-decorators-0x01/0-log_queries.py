@@ -1,5 +1,6 @@
 import sqlite3
 import functools
+from datetime import datetime
 
 #decorator
 def log_queries(func):
