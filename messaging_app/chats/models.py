@@ -7,6 +7,7 @@ from django.utils import timezone
 class User(AbstractUser):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
+    password = models.CharField(max_length=128)  # Password field, can be hashed
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     ROLE_CHOICES = (
         ('guest', 'Guest'),
