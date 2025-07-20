@@ -21,3 +21,21 @@ class ConversationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Conversation
         fields = ['conversation_id', 'participants', 'created_at', 'messages']
+        
+class ConversationCreateSerializer(serializers.ModelSerializer):
+    participants = serializers.PrimaryKeyRelatedField(
+        many=True,
+        queryset=User.objects.all()
+    )
+
+    class Meta:
+        model = Conversation
+        fields = ['participants']
+
+    def validate_participants(self, value):
+        if len(value) < 2:
+            raise serializers.ValidationError(  
+                "A conversation must have at least two participants."
+            )
+        return value
+
