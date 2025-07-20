@@ -25,7 +25,7 @@ class TestAccessNestedMap(unittest.TestCase):
         self.assertEqual(cm.exception.args[0], expected_key)
         
 class TestGetJson(unittest.TestCase):
-    @patch('__main__.requests.get')
+    @patch('utils.requests.get')
     def test_get_json(self, mock_get):
         mock_response = Mock()
         mock_response.json.return_value = {"key": "value"}
@@ -37,7 +37,7 @@ class TestGetJson(unittest.TestCase):
         mock_get.assert_called_once_with(url)
         self.assertEqual(result, {"key": "value"})
         
-    @patch('__main__.requests.get')
+    @patch('utils.requests.get')
     def test_get_json_exception(self, mock_get):
         mock_get.side_effect = Exception("Network error")
         
