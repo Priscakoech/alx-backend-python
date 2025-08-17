@@ -20,3 +20,5 @@ EXPOSE 8000
 
 # 7. Command to start Django when the container runs
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+#docker run -p 8000:8000 messaging_app_image
